@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .header {
+            background: #111;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, #00d4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .widget {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1rem;
+            min-height: 200px;
+        }
+        .widget h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        .widget.full-width {
+            grid-column: span 3;
+        }
+        .widget.half-width {
+            grid-column: span 2;
+        }
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.5rem;
+        }
+        .agent-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 0.75rem;
+            border-left: 3px solid #333;
+        }
+        .agent-card.idle { border-left-color: #00ff88; }
+        .agent-card.working { border-left-color: #00d4ff; }
+        .agent-card.error { border-left-color: #ff6b6b; }
+        .agent-card.offline { border-left-color: #666; }
+        .agent-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .agent-role {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        .agent-status {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+        }
+        .alert-feed {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .alert-item {
+            background: #1a1a1a;
+            border-radius: 6px;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid;
+        }
+        .alert-item.critical { border-left-color: #ff6b6b; }
+        .alert-item.warning { border-left-color: #ffaa00; }
+        .alert-item.info { border-left-color: #00d4ff; }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .metric {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+        .metric-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Mission Control</h1>
+        <div class="status-indicator">
+            <div class="status-dot"></div>
+            <span>System Online</span>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="widget half-width">
+            <h3>Agent Map</h3>
+            <div id="agent-map" class="agent-grid">
+                <div class="loading">Loading agents...</div>
+            </div>
+        </div>
+
+        <div class="widget">
+            <h3>Active Alerts</h3>
+            <div id="alert-feed" class="alert-feed">
+                <div class="alert-item info">
+                    <strong>System</strong> - Mission Control initialized
+                </div>
+            </div>
+        </div>
+
+        <div class="widget">
+            <h3>System Metrics</h3>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value" id="agent-count">-</div>
+                    <div class="metric-label">Agents</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="task-count">-</div>
+                    <div class="metric-label">Tasks</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget full-width">
+            <h3>Real-time Telemetry</h3>
+            <div id="telemetry-chart">
+                <canvas id="chart-canvas"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[Unit]
+Description=Mission Control Dashboard
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace/neural-nexus/mission-control
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=10
+Environment=PORT=3456
+StandardOutput=append:/var/log/mission-control.log
+StandardError=append:/var/log/mission-control.log
+
+[Install]
+WantedBy=multi-user.target

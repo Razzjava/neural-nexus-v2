@@ -1,0 +1,43 @@
+{
+  "activeRenders": [
+    {
+      "id": 1771946095618,
+      "topic": "Show HN: enveil – hide your .env secrets from prAIng eyes",
+      "status": "rendering",
+      "startedAt": "2026-02-24T15:14:55.618Z"
+    }
+  ],
+  "pendingScripts": [
+    {
+      "topic": "Show HN: enveil – hide your .env secrets from prAIng eyes",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/show-hn-enveil-hide-your-env-secrets-from-praing-e-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/show-hn-enveil-hide-your-env-secrets-from-praing-e-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "The AI shift nobody saw coming"
+      },
+      "timestamp": "2026-02-24T15:14:53.618Z"
+    },
+    {
+      "topic": "Goodbye InnerHTML, Hello SetHTML: Stronger XSS Protection in Firefox 148",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/goodbye-innerhtml-hello-sethtml-stronger-xss-prote-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/goodbye-innerhtml-hello-sethtml-stronger-xss-prote-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "60% of your workflow—automated by 2026"
+      },
+      "timestamp": "2026-02-24T17:14:53.793Z"
+    }
+  ],
+  "publishedVideos": [],
+  "topicHistory": [],
+  "hookPerformance": {},
+  "componentRetention": {},
+  "contentGoals": {
+    "shortsPerDay": 3,
+    "longsPerWeek": 2
+  },
+  "qualityThreshold": 0.7
+}

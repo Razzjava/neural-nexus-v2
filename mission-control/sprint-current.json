@@ -1,0 +1,73 @@
+{
+  "number": 1,
+  "goals": [
+    "Build Mission Control Dashboard MVP"
+  ],
+  "startDate": "2026-02-24T16:06:45.262Z",
+  "endDate": null,
+  "status": "active",
+  "tasks": [
+    {
+      "id": "MC-1",
+      "title": "Set up project structure",
+      "points": 3,
+      "status": "in_progress",
+      "assignee": "architect-agent"
+    },
+    {
+      "id": "MC-2",
+      "title": "Design database schema",
+      "points": 3,
+      "status": "in_progress",
+      "assignee": "backend-dev-agent"
+    },
+    {
+      "id": "MC-3",
+      "title": "Create Agent model",
+      "points": 2,
+      "status": "done",
+      "assignee": "frontend-dev-agent",
+      "completedAt": "2026-02-24T16:06:55.279Z"
+    },
+    {
+      "id": "MC-4",
+      "title": "Build heartbeat endpoint",
+      "points": 3,
+      "status": "done",
+      "assignee": "devops-agent",
+      "completedAt": "2026-02-24T16:06:55.281Z"
+    },
+    {
+      "id": "MC-5",
+      "title": "Create dashboard layout",
+      "points": 3,
+      "status": "done",
+      "assignee": null,
+      "completedAt": "2026-02-24T16:06:55.280Z"
+    },
+    {
+      "id": "MC-6",
+      "title": "Build agent status widget",
+      "points": 5,
+      "status": "done",
+      "assignee": null,
+      "completedAt": "2026-02-24T16:06:55.281Z"
+    },
+    {
+      "id": "MC-7",
+      "title": "Write agent telemetry tests",
+      "points": 3,
+      "status": "backlog",
+      "assignee": null
+    },
+    {
+      "id": "MC-8",
+      "title": "Deploy to systemd",
+      "points": 2,
+      "status": "done",
+      "assignee": null,
+      "completedAt": "2026-02-24T16:06:55.280Z"
+    }
+  ],
+  "velocity": 74
+}
