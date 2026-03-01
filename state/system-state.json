@@ -29,6 +29,160 @@
         "long": "60% of your workflow—automated by 2026"
       },
       "timestamp": "2026-02-24T17:14:53.793Z"
+    },
+    {
+      "topic": "OpenAI, the US government and Persona built an identity surveillance machine",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-the-us-government-and-persona-built-an-iden-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-the-us-government-and-persona-built-an-iden-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "Why the best developers are switching"
+      },
+      "timestamp": "2026-02-24T19:14:51.999Z"
+    },
+    {
+      "topic": "IRS Tactics Against Meta Open a New Front in the Corporate Tax Fight",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/irs-tactics-against-meta-open-a-new-front-in-the-c-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/irs-tactics-against-meta-open-a-new-front-in-the-c-long.md",
+      "hooks": {
+        "short": "Your job is about to change",
+        "long": "The AI shift nobody saw coming"
+      },
+      "timestamp": "2026-02-24T21:14:53.008Z"
+    },
+    {
+      "topic": "How we rebuilt Next.js with AI in one week",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/how-we-rebuilt-next-js-with-ai-in-one-week-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/how-we-rebuilt-next-js-with-ai-in-one-week-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "Why the best developers are switching"
+      },
+      "timestamp": "2026-02-24T23:14:53.242Z"
+    },
+    {
+      "topic": "Never Buy A .online Domain",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/never-buy-a-online-domain-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/never-buy-a-online-domain-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "60% of your workflow—automated by 2026"
+      },
+      "timestamp": "2026-02-25T15:14:54.842Z"
+    },
+    {
+      "topic": "AIs can't stop recommending nuclear strikes in war game simulations",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/ais-can-t-stop-recommending-nuclear-strikes-in-war-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/ais-can-t-stop-recommending-nuclear-strikes-in-war-long.md",
+      "hooks": {
+        "short": "This changes everything in 2026",
+        "long": "60% of your workflow—automated by 2026"
+      },
+      "timestamp": "2026-02-25T21:14:53.206Z"
+    },
+    {
+      "topic": "Tell HN: YC companies scrape GitHub activity, send spam emails to users",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/tell-hn-yc-companies-scrape-github-activity-send-s-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/tell-hn-yc-companies-scrape-github-activity-send-s-long.md",
+      "hooks": {
+        "short": "Your job is about to change",
+        "long": "The AI shift nobody saw coming"
+      },
+      "timestamp": "2026-02-26T13:14:52.734Z"
+    },
+    {
+      "topic": "Nano Banana 2: Google's latest AI image generation model",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/nano-banana-2-google-s-latest-ai-image-generation-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/nano-banana-2-google-s-latest-ai-image-generation-long.md",
+      "hooks": {
+        "short": "This changes everything in 2026",
+        "long": "60% of your workflow—automated by 2026"
+      },
+      "timestamp": "2026-02-26T17:14:54.269Z"
+    },
+    {
+      "topic": "AirSnitch: Demystifying and breaking client isolation in Wi-Fi networks [pdf]",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/airsnitch-demystifying-and-breaking-client-isolati-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/airsnitch-demystifying-and-breaking-client-isolati-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "The AI shift nobody saw coming"
+      },
+      "timestamp": "2026-02-26T19:14:54.071Z"
+    },
+    {
+      "topic": "Get free Claude max 20x for open-source maintainers",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/get-free-claude-max-20x-for-open-source-maintainer-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/get-free-claude-max-20x-for-open-source-maintainer-long.md",
+      "hooks": {
+        "short": "This changes everything in 2026",
+        "long": "Why the best developers are switching"
+      },
+      "timestamp": "2026-02-27T19:14:52.686Z"
+    },
+    {
+      "topic": "OpenAI raises $110B on $730B pre-money valuation",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-raises-110b-on-730b-pre-money-valuation-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-raises-110b-on-730b-pre-money-valuation-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "The AI shift nobody saw coming"
+      },
+      "timestamp": "2026-02-27T21:14:53.761Z"
+    },
+    {
+      "topic": "I am directing the Department of War to designate Anthropic a Supply-Chain Risk",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/i-am-directing-the-department-of-war-to-designate-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/i-am-directing-the-department-of-war-to-designate-long.md",
+      "hooks": {
+        "short": "This changes everything in 2026",
+        "long": "Why the best developers are switching"
+      },
+      "timestamp": "2026-02-27T23:14:53.596Z"
+    },
+    {
+      "topic": "OpenAI agrees with Dept. of War to deploy models in their classified network",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-agrees-with-dept-of-war-to-deploy-models-in-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-agrees-with-dept-of-war-to-deploy-models-in-long.md",
+      "hooks": {
+        "short": "Your job is about to change",
+        "long": "Why the best developers are switching"
+      },
+      "timestamp": "2026-02-28T05:14:53.145Z"
+    },
+    {
+      "topic": "OpenAI – How to delete your account",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-how-to-delete-your-account-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-how-to-delete-your-account-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "60% of your workflow—automated by 2026"
+      },
+      "timestamp": "2026-02-28T13:14:54.546Z"
+    },
+    {
+      "topic": "We do not think Anthropic should be designated as a supply chain risk",
+      "category": "ai",
+      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/we-do-not-think-anthropic-should-be-designated-as-short.md",
+      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/we-do-not-think-anthropic-should-be-designated-as-long.md",
+      "hooks": {
+        "short": "AI just got real",
+        "long": "The AI shift nobody saw coming"
+      },
+      "timestamp": "2026-03-01T01:14:54.864Z"
     }
   ],
   "publishedVideos": [],

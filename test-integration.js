@@ -5,7 +5,7 @@
  * Tests cross-agent workflows and event system
  */
 
-const EventBus = require('./event-bus');
+const { EventBus, StateStore } = require('./event-bus');
 const QualityGate = require('./quality-gate');
 const { agents, setupCrossAgentTriggers } = require('./agent-wrapper');
 
@@ -16,7 +16,8 @@ setupCrossAgentTriggers();
 
 // Test 1: Event Bus
 console.log('Test 1: Event Bus');
-const eventId = EventBus.emit('test.event', { message: 'Hello Nexus' }, 5);
+const eventBus = new EventBus('test-agent');
+const eventId = eventBus.publish('test.event', { message: 'Hello Nexus' });
 console.log(`✅ Emitted event: ${eventId}`);
 
 // Test 2: Quality Gate
@@ -43,10 +44,10 @@ agents.researcher.execute(async () => {
 // Test 4: Cross-agent trigger
 console.log('\nTest 4: Cross-agent Workflow');
 setTimeout(() => {
-  EventBus.emit('research.complete', { 
+  eventBus.publish('research.complete', { 
     topics: ['AI', 'Low-code'], 
     viral: true 
-  }, 8);
+  });
   console.log('✅ Emitted research.complete - video editor should trigger');
 }, 1000);
 

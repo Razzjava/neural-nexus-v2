@@ -7,8 +7,11 @@
  * - Quality Gate (output review)
  */
 
-const EventBus = require('../neural-nexus/event-bus');
-const QualityGate = require('../neural-nexus/quality-gate');
+const { EventBus } = require('./event-bus');
+const QualityGate = require('./quality-gate');
+
+// Create singleton event bus for all agents
+const eventBus = new EventBus('agent-wrapper');
 
 class AgentWrapper {
   constructor(agentName, config = {}) {
@@ -31,11 +34,11 @@ class AgentWrapper {
     
     // Emit start event
     if (this.config.emitEvents) {
-      EventBus.emit('agent.started', {
+      eventBus.publish('agent.started', {
         agent: this.agent,
         context,
         timestamp: new Date().toISOString()
-      }, context.priority || 5);
+      });
     }
     
     try {
@@ -48,12 +51,12 @@ class AgentWrapper {
       if (review.passed) {
         // Approved - emit completion
         if (this.config.emitEvents) {
-          EventBus.emit('agent.completed', {
+          eventBus.publish('agent.completed', {
             agent: this.agent,
             output,
             review,
             timestamp: new Date().toISOString()
-          }, context.priority || 5);
+          });
         }
         
         this.retryCount = 0;
@@ -74,13 +77,13 @@ class AgentWrapper {
       } else {
         // Failed after retries
         if (this.config.emitEvents) {
-          EventBus.emit('agent.failed', {
+          eventBus.publish('agent.failed', {
             agent: this.agent,
             output,
             review,
             retries: this.retryCount,
             timestamp: new Date().toISOString()
-          }, 9);
+          });
         }
         
         this.retryCount = 0;
@@ -92,12 +95,12 @@ class AgentWrapper {
       console.error(`[AgentWrapper] ${this.agent} error:`, error.message);
       
       if (this.config.emitEvents) {
-        EventBus.emit('agent.error', {
+        eventBus.publish('agent.error', {
           agent: this.agent,
           error: error.message,
           context,
           timestamp: new Date().toISOString()
-        }, 10);
+        });
       }
       
       throw error;
@@ -110,13 +113,11 @@ class AgentWrapper {
   on(eventType, handler) {
     console.log(`[AgentWrapper] ${this.agent} listening for: ${eventType}`);
     
-    // Poll for events every 30 seconds
-    setInterval(async () => {
-      await EventBus.consume(eventType, async (payload) => {
-        console.log(`[AgentWrapper] ${this.agent} triggered by: ${eventType}`);
-        await handler(payload);
-      });
-    }, 30000);
+    // Subscribe to events
+    eventBus.subscribe(eventType, async (payload) => {
+      console.log(`[AgentWrapper] ${this.agent} triggered by: ${eventType}`);
+      await handler(payload);
+    });
   }
   
   /**
@@ -124,11 +125,11 @@ class AgentWrapper {
    */
   emit(eventType, payload, priority = 5) {
     if (this.config.emitEvents) {
-      EventBus.emit(eventType, {
+      eventBus.publish(eventType, {
         agent: this.agent,
         ...payload,
         timestamp: new Date().toISOString()
-      }, priority);
+      });
     }
   }
 }
