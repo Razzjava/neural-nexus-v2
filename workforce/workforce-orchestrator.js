@@ -14,7 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { EventBus } = require('./event-bus');
+const { EventBus } = require('../event-bus');
 
 const WORKSPACE = '/root/.openclaw/workspace';
 const NEXUS_DIR = path.join(WORKSPACE, 'neural-nexus');
