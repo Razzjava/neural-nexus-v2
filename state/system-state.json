@@ -1,192 +1,279 @@
 {
-  "activeRenders": [
-    {
-      "id": 1771946095618,
-      "topic": "Show HN: enveil – hide your .env secrets from prAIng eyes",
-      "status": "rendering",
-      "startedAt": "2026-02-24T15:14:55.618Z"
-    }
-  ],
-  "pendingScripts": [
+  "activeRenders": [],
+  "pendingScripts": [],
+  "publishedVideos": [],
+  "topicHistory": [
     {
       "topic": "Show HN: enveil – hide your .env secrets from prAIng eyes",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/show-hn-enveil-hide-your-env-secrets-from-praing-e-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/show-hn-enveil-hide-your-env-secrets-from-praing-e-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "The AI shift nobody saw coming"
-      },
-      "timestamp": "2026-02-24T15:14:53.618Z"
+      "date": "2026-02-24T15:14:52.068Z",
+      "performance": null
     },
     {
       "topic": "Goodbye InnerHTML, Hello SetHTML: Stronger XSS Protection in Firefox 148",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/goodbye-innerhtml-hello-sethtml-stronger-xss-prote-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/goodbye-innerhtml-hello-sethtml-stronger-xss-prote-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "60% of your workflow—automated by 2026"
-      },
-      "timestamp": "2026-02-24T17:14:53.793Z"
+      "date": "2026-02-24T17:14:51.875Z",
+      "performance": null
     },
     {
       "topic": "OpenAI, the US government and Persona built an identity surveillance machine",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-the-us-government-and-persona-built-an-iden-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-the-us-government-and-persona-built-an-iden-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "Why the best developers are switching"
-      },
-      "timestamp": "2026-02-24T19:14:51.999Z"
+      "date": "2026-02-24T19:14:51.701Z",
+      "performance": null
     },
     {
       "topic": "IRS Tactics Against Meta Open a New Front in the Corporate Tax Fight",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/irs-tactics-against-meta-open-a-new-front-in-the-c-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/irs-tactics-against-meta-open-a-new-front-in-the-c-long.md",
-      "hooks": {
-        "short": "Your job is about to change",
-        "long": "The AI shift nobody saw coming"
-      },
-      "timestamp": "2026-02-24T21:14:53.008Z"
+      "date": "2026-02-24T21:14:51.650Z",
+      "performance": null
     },
     {
       "topic": "How we rebuilt Next.js with AI in one week",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/how-we-rebuilt-next-js-with-ai-in-one-week-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/how-we-rebuilt-next-js-with-ai-in-one-week-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "Why the best developers are switching"
-      },
-      "timestamp": "2026-02-24T23:14:53.242Z"
+      "date": "2026-02-24T23:14:52.189Z",
+      "performance": null
+    },
+    {
+      "topic": "Show HN: Emdash – Open-source agentic development environment",
+      "date": "2026-02-25T01:14:51.967Z",
+      "performance": null
     },
     {
       "topic": "Never Buy A .online Domain",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/never-buy-a-online-domain-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/never-buy-a-online-domain-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "60% of your workflow—automated by 2026"
-      },
-      "timestamp": "2026-02-25T15:14:54.842Z"
+      "date": "2026-02-25T15:14:51.947Z",
+      "performance": null
+    },
+    {
+      "topic": "How to fold the Blade Runner origami unicorn (1996)",
+      "date": "2026-02-25T19:14:52.178Z",
+      "performance": null
     },
     {
       "topic": "AIs can't stop recommending nuclear strikes in war game simulations",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/ais-can-t-stop-recommending-nuclear-strikes-in-war-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/ais-can-t-stop-recommending-nuclear-strikes-in-war-long.md",
-      "hooks": {
-        "short": "This changes everything in 2026",
-        "long": "60% of your workflow—automated by 2026"
-      },
-      "timestamp": "2026-02-25T21:14:53.206Z"
+      "date": "2026-02-25T21:14:51.799Z",
+      "performance": null
+    },
+    {
+      "topic": "How will OpenAI compete?",
+      "date": "2026-02-26T05:14:51.673Z",
+      "performance": null
+    },
+    {
+      "topic": "Artist who “paints” portraits on glass by hitting it with a hammer",
+      "date": "2026-02-26T07:14:52.012Z",
+      "performance": null
     },
     {
       "topic": "Tell HN: YC companies scrape GitHub activity, send spam emails to users",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/tell-hn-yc-companies-scrape-github-activity-send-s-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/tell-hn-yc-companies-scrape-github-activity-send-s-long.md",
-      "hooks": {
-        "short": "Your job is about to change",
-        "long": "The AI shift nobody saw coming"
-      },
-      "timestamp": "2026-02-26T13:14:52.734Z"
+      "date": "2026-02-26T13:14:51.522Z",
+      "performance": null
     },
     {
       "topic": "Nano Banana 2: Google's latest AI image generation model",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/nano-banana-2-google-s-latest-ai-image-generation-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/nano-banana-2-google-s-latest-ai-image-generation-long.md",
-      "hooks": {
-        "short": "This changes everything in 2026",
-        "long": "60% of your workflow—automated by 2026"
-      },
-      "timestamp": "2026-02-26T17:14:54.269Z"
+      "date": "2026-02-26T17:14:51.534Z",
+      "performance": null
     },
     {
       "topic": "AirSnitch: Demystifying and breaking client isolation in Wi-Fi networks [pdf]",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/airsnitch-demystifying-and-breaking-client-isolati-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/airsnitch-demystifying-and-breaking-client-isolati-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "The AI shift nobody saw coming"
-      },
-      "timestamp": "2026-02-26T19:14:54.071Z"
+      "date": "2026-02-26T19:14:51.829Z",
+      "performance": null
+    },
+    {
+      "topic": "PostmarketOS in 2026-02: generic kernels, bans use of generative AI",
+      "date": "2026-02-27T13:14:51.701Z",
+      "performance": null
     },
     {
       "topic": "Get free Claude max 20x for open-source maintainers",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/get-free-claude-max-20x-for-open-source-maintainer-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/get-free-claude-max-20x-for-open-source-maintainer-long.md",
-      "hooks": {
-        "short": "This changes everything in 2026",
-        "long": "Why the best developers are switching"
-      },
-      "timestamp": "2026-02-27T19:14:52.686Z"
+      "date": "2026-02-27T19:14:51.741Z",
+      "performance": null
     },
     {
       "topic": "OpenAI raises $110B on $730B pre-money valuation",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-raises-110b-on-730b-pre-money-valuation-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-raises-110b-on-730b-pre-money-valuation-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "The AI shift nobody saw coming"
-      },
-      "timestamp": "2026-02-27T21:14:53.761Z"
+      "date": "2026-02-27T21:14:52.065Z",
+      "performance": null
     },
     {
       "topic": "I am directing the Department of War to designate Anthropic a Supply-Chain Risk",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/i-am-directing-the-department-of-war-to-designate-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/i-am-directing-the-department-of-war-to-designate-long.md",
-      "hooks": {
-        "short": "This changes everything in 2026",
-        "long": "Why the best developers are switching"
-      },
-      "timestamp": "2026-02-27T23:14:53.596Z"
+      "date": "2026-02-27T23:14:51.751Z",
+      "performance": null
     },
     {
       "topic": "OpenAI agrees with Dept. of War to deploy models in their classified network",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-agrees-with-dept-of-war-to-deploy-models-in-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-agrees-with-dept-of-war-to-deploy-models-in-long.md",
-      "hooks": {
-        "short": "Your job is about to change",
-        "long": "Why the best developers are switching"
-      },
-      "timestamp": "2026-02-28T05:14:53.145Z"
+      "date": "2026-02-28T05:14:51.699Z",
+      "performance": null
+    },
+    {
+      "topic": "Israel launches strike against Iran, declares state of emergency across country",
+      "date": "2026-02-28T11:14:51.785Z",
+      "performance": null
     },
     {
       "topic": "OpenAI – How to delete your account",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-how-to-delete-your-account-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/openai-how-to-delete-your-account-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "60% of your workflow—automated by 2026"
-      },
-      "timestamp": "2026-02-28T13:14:54.546Z"
+      "date": "2026-02-28T13:14:53.816Z",
+      "performance": null
+    },
+    {
+      "topic": "OpenAI Fires an Employee for Prediction Market Insider Trading",
+      "date": "2026-02-28T17:14:51.746Z",
+      "performance": null
     },
     {
       "topic": "We do not think Anthropic should be designated as a supply chain risk",
-      "category": "ai",
-      "shortScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/we-do-not-think-anthropic-should-be-designated-as-short.md",
-      "longScript": "/root/.openclaw/workspace/neural-nexus/agents-output/scripts/we-do-not-think-anthropic-should-be-designated-as-long.md",
-      "hooks": {
-        "short": "AI just got real",
-        "long": "The AI shift nobody saw coming"
-      },
-      "timestamp": "2026-03-01T01:14:54.864Z"
+      "date": "2026-03-01T01:14:51.781Z",
+      "performance": null
+    },
+    {
+      "topic": "I built a demo of what AI chat will look like when it's \"free\" and ad-supported",
+      "date": "2026-03-01T15:14:51.792Z",
+      "performance": null
+    },
+    {
+      "topic": "AI Made Writing Code Easier. It Made Being an Engineer Harder",
+      "date": "2026-03-01T17:14:51.886Z",
+      "performance": null
+    },
+    {
+      "topic": "Why XML tags are so fundamental to Claude",
+      "date": "2026-03-01T21:14:51.733Z",
+      "performance": null
+    },
+    {
+      "topic": "How to talk to anyone, and why you should",
+      "date": "2026-03-01T23:14:51.974Z",
+      "performance": null
+    },
+    {
+      "topic": "Microgpt explained interactively",
+      "date": "2026-03-02T01:14:51.789Z",
+      "performance": null
+    },
+    {
+      "topic": "WebMCP is available for early preview",
+      "date": "2026-03-02T03:14:51.696Z",
+      "performance": null
+    },
+    {
+      "topic": "If AI writes code, should the session be part of the commit?",
+      "date": "2026-03-02T07:14:51.886Z",
+      "performance": null
+    },
+    {
+      "topic": "Show HN: Timber – Ollama for classical ML models, 336x faster than Python",
+      "date": "2026-03-02T09:14:51.876Z",
+      "performance": null
+    },
+    {
+      "topic": "How to talk to anyone and why you should",
+      "date": "2026-03-02T13:14:51.790Z",
+      "performance": null
+    },
+    {
+      "topic": "New iPad Air, powered by M4",
+      "date": "2026-03-02T19:14:51.756Z",
+      "performance": null
+    },
+    {
+      "topic": "First in-utero stem cell therapy for fetal spina bifida repair is safe: study",
+      "date": "2026-03-02T21:14:51.896Z",
+      "performance": null
+    },
+    {
+      "topic": "Show HN: I built a sub-500ms latency voice agent from scratch",
+      "date": "2026-03-03T01:14:51.886Z",
+      "performance": null
+    },
+    {
+      "topic": "Meta’s AI smart glasses and data privacy concerns",
+      "date": "2026-03-03T07:14:51.729Z",
+      "performance": null
+    },
+    {
+      "topic": "Ars Technica fires reporter after AI controversy involving fabricated quotes",
+      "date": "2026-03-03T09:14:51.824Z",
+      "performance": null
+    },
+    {
+      "topic": "India's top court angry after junior judge cites fake AI-generated orders",
+      "date": "2026-03-03T15:14:52.055Z",
+      "performance": null
+    },
+    {
+      "topic": "MacBook Air with M5",
+      "date": "2026-03-03T19:14:52.231Z",
+      "performance": null
+    },
+    {
+      "topic": "Lenovo's New ThinkPads Score 10/10 for Repairability",
+      "date": "2026-03-04T03:14:51.969Z",
+      "performance": null
+    },
+    {
+      "topic": "Agentic Engineering Patterns",
+      "date": "2026-03-04T09:14:51.937Z",
+      "performance": null
+    },
+    {
+      "topic": "Dario Amodei calls OpenAI’s messaging around military deal ‘straight up lies’",
+      "date": "2026-03-05T03:14:51.996Z",
+      "performance": null
+    },
+    {
+      "topic": "Relicensing with AI-Assisted Rewrite",
+      "date": "2026-03-05T11:14:51.896Z",
+      "performance": null
+    },
+    {
+      "topic": "AMD will bring its “Ryzen AI” processors to standard desktop PCs for first time",
+      "date": "2026-03-05T13:14:51.750Z",
+      "performance": null
+    },
+    {
+      "topic": "Show HN: Jido 2.0, Elixir Agent Framework",
+      "date": "2026-03-05T19:14:51.733Z",
+      "performance": null
+    },
+    {
+      "topic": "Pentagon Formally Labels Anthropic Supply-Chain Risk",
+      "date": "2026-03-05T21:14:51.898Z",
+      "performance": null
+    },
+    {
+      "topic": "Hardware hotplug events on Linux, the gory details",
+      "date": "2026-03-06T01:14:51.707Z",
+      "performance": null
+    },
+    {
+      "topic": "The next generations of Bubble Tea, Lip Gloss, and Bubbles are available now",
+      "date": "2026-03-06T03:14:51.890Z",
+      "performance": null
+    },
+    {
+      "topic": "A standard protocol to handle and discard low-effort, AI-Generated pull requests",
+      "date": "2026-03-06T05:14:51.994Z",
+      "performance": null
+    },
+    {
+      "topic": "Labor market impacts of AI: A new measure and early evidence",
+      "date": "2026-03-06T07:14:51.870Z",
+      "performance": null
+    },
+    {
+      "topic": "US economy unexpectedly sheds 92,000 jobs in February",
+      "date": "2026-03-06T15:14:51.932Z",
+      "performance": null
+    },
+    {
+      "topic": "Workers who love 'synergizing paradigms' might be bad at their jobs",
+      "date": "2026-03-06T17:14:52.129Z",
+      "performance": null
+    },
+    {
+      "topic": "Tell HN: I'm 60 years old. Claude Code has ignited a passion again",
+      "date": "2026-03-07T03:14:51.963Z",
+      "performance": null
+    },
+    {
+      "topic": "A Decade of Docker Containers",
+      "date": "2026-03-07T19:14:52.104Z",
+      "performance": null
     }
   ],
-  "publishedVideos": [],
-  "topicHistory": [],
   "hookPerformance": {},
   "componentRetention": {},
   "contentGoals": {

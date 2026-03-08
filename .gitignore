@@ -1,2 +1,45 @@
+# Dependencies
 node_modules/
 remotion/node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+
+# Generated output (keep structure, ignore content)
+agents-output/videos/*.mp4
+agents-output/videos/*.mov
+agents-output/render/
+
+# State files (generated at runtime)
+state/*.json
+analysis/*.json
+meta-learning/*.json
+dna/*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Secrets (if any)
+.env
+.env.local
+*.key
