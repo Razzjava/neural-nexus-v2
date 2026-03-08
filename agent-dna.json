@@ -1,0 +1,102 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-03-08T22:15:00+08:00",
+  "agents": {
+    "scout-worker": {
+      "id": "scout-worker",
+      "name": "YouTube Scout Worker",
+      "role": "Content Intelligence",
+      "dna": {
+        "integrity": 98,
+        "lineage": "v2.0-research",
+        "mutations": ["web-search", "trend-analysis", "viral-prediction"]
+      },
+      "capabilities": ["youtube-scout", "topic-research", "content-ideation"],
+      "resources": {
+        "memoryTargetMB": 256,
+        "cpuLimit": 50
+      },
+      "createdAt": "2026-03-08T09:00:00+08:00"
+    },
+    "content-empire": {
+      "id": "content-empire",
+      "name": "Content Empire Agent",
+      "role": "Script Generation",
+      "dna": {
+        "integrity": 96,
+        "lineage": "v2.0-creative",
+        "mutations": ["multi-platform", "hook-optimization", "seo-integration"]
+      },
+      "capabilities": ["script-writing", "youtube-long", "youtube-short", "tiktok", "twitter", "linkedin"],
+      "resources": {
+        "memoryTargetMB": 512,
+        "cpuLimit": 75
+      },
+      "createdAt": "2026-03-08T09:00:00+08:00"
+    },
+    "startup-generator": {
+      "id": "startup-generator",
+      "name": "Startup Generation Agent",
+      "role": "Business Ideation",
+      "dna": {
+        "integrity": 94,
+        "lineage": "v2.0-venture",
+        "mutations": ["market-validation", "mvp-design", "financial-modeling"]
+      },
+      "capabilities": ["startup-ideation", "market-research", "mvp-creation", "pitch-deck"],
+      "resources": {
+        "memoryTargetMB": 384,
+        "cpuLimit": 60
+      },
+      "createdAt": "2026-03-08T09:00:00+08:00"
+    },
+    "nexus-dev-team": {
+      "id": "nexus-dev-team",
+      "name": "Nexus Dev Team",
+      "role": "Platform Engineering",
+      "dna": {
+        "integrity": 92,
+        "lineage": "v2.0-engineer",
+        "mutations": ["agent-messaging", "system-architecture", "test-automation"]
+      },
+      "capabilities": ["feature-development", "bug-fixes", "architecture", "testing"],
+      "resources": {
+        "memoryTargetMB": 448,
+        "cpuLimit": 70
+      },
+      "createdAt": "2026-03-08T09:00:00+08:00"
+    },
+    "remotion-video": {
+      "id": "remotion-video",
+      "name": "Remotion Video Agent",
+      "role": "Video Production",
+      "dna": {
+        "integrity": 95,
+        "lineage": "v2.0-renderer",
+        "mutations": ["9x16-vertical", "16x9-horizontal", "viral-templates"]
+      },
+      "capabilities": ["video-rendering", "remotion-compositions", "tiktok-video", "youtube-video"],
+      "resources": {
+        "memoryTargetMB": 1024,
+        "cpuLimit": 90
+      },
+      "createdAt": "2026-03-08T09:00:00+08:00"
+    },
+    "workforce-reporter": {
+      "id": "workforce-reporter",
+      "name": "Workforce Reporter",
+      "role": "System Intelligence",
+      "dna": {
+        "integrity": 99,
+        "lineage": "v2.0-analytics",
+        "mutations": ["dashboard-generation", "health-monitoring", "metrics-analysis"]
+      },
+      "capabilities": ["reporting", "dashboard-creation", "health-audits", "metrics-tracking"],
+      "resources": {
+        "memoryTargetMB": 192,
+        "cpuLimit": 30
+      },
+      "createdAt": "2026-03-08T09:00:00+08:00"
+    }
+  }
+}
