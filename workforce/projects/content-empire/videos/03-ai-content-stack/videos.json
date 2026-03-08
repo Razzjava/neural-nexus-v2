@@ -1,0 +1,18 @@
+{
+  "scriptId": "03-ai-content-stack",
+  "hook": "I went from spending 20 hours per video to 4 hours—without sacrificing quality. Here's the AI content stack that made it possible.",
+  "theme": "AI Tools & Creator Economy",
+  "createdAt": "2026-03-08T01:46:45.451Z",
+  "videos": {
+    "youtubeLong": {
+      "format": "youtubeLong",
+      "width": 1920,
+      "height": 1080,
+      "duration": 45,
+      "fps": 30,
+      "compositionPath": "/root/.openclaw/workspace/neural-nexus/remotion/video-youtubeLong-1772934405450.tsx",
+      "outputPath": "/root/.openclaw/workspace/neural-nexus/workforce/projects/content-empire/videos/03-ai-content-stack/youtubeLong.mp4",
+      "status": "ready_to_render"
+    }
+  }
+}

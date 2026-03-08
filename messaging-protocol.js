@@ -164,11 +164,16 @@ class AgentMessageProtocol {
     static createRequest(options) {
         return this.create({
             type: MESSAGE_TYPE.REQUEST,
-            ...options,
+            sender: options.sender,
+            recipient: options.recipient,
+            payload: options.payload,
             options: {
                 ...options.options,
-                expectResponse: true,
-                responseTimeout: options.options?.responseTimeout || 30000
+                metadata: {
+                    ...options.options?.metadata,
+                    expectResponse: true,
+                    responseTimeout: options.options?.responseTimeout || 30000
+                }
             }
         });
     }

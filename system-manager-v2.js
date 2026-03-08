@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * Neural Nexus System Manager v2.0
  * 
@@ -9,6 +7,7 @@
  * - Meta-learning engine
  * - Quality gate
  * - All agents
+ * - Agent-to-Agent Messaging System (NEXUS-001)
  * 
  * This is the main entry point for the enhanced Neural Nexus.
  */
@@ -24,15 +23,25 @@ const metaLearning = require('./meta-learning-engine');
 const qualityGate = require('./quality-gate');
 const { EventBus } = require('./event-bus');
 
+// Import NEXUS-001: Agent-to-Agent Messaging
+const { EnhancedEventBus, MESSAGE_TYPE } = require('./enhanced-event-bus');
+const { AgentMessageProtocol } = require('./messaging-protocol');
+const { MessageHistoryTracker } = require('./message-history');
+
 const NEXUS_DIR = '/root/.openclaw/workspace/neural-nexus';
 const TELEGRAM_GROUP = '-5297940191';
 
 class NeuralNexusSystem {
   constructor() {
-    this.bus = new EventBus('nexus-system');
+    // NEXUS-001: Use Enhanced Event Bus with messaging capabilities
+    this.bus = new EnhancedEventBus('nexus-system');
     this.startedAt = new Date().toISOString();
     this.status = 'initializing';
     this.healthStatus = {};
+    
+    // Message routing registry
+    this.messageRoutes = new Map();
+    this.agentRegistry = new Map();
     
     // Subscribe to all system events
     this.bus.subscribe([
@@ -41,6 +50,261 @@ class NeuralNexusSystem {
       'HEALING_REQUIRED', 'HEALING_COMPLETED',
       'SYSTEM_ALERT'
     ], this.handleSystemEvent.bind(this));
+    
+    // NEXUS-001: Subscribe to agent messages
+    this.bus.onMessage(this.handleAgentMessage.bind(this));
+    
+    // Register message routes for system components
+    this.registerMessageRoutes();
+  }
+
+  /**
+   * NEXUS-001: Register message routes for system components
+   */
+  registerMessageRoutes() {
+    // Route messages to appropriate handlers
+    this.messageRoutes.set('orchestrator', this.routeToOrchestrator.bind(this));
+    this.messageRoutes.set('failure-analysis', this.routeToFailureAnalysis.bind(this));
+    this.messageRoutes.set('meta-learning', this.routeToMetaLearning.bind(this));
+    this.messageRoutes.set('quality-gate', this.routeToQualityGate.bind(this));
+    this.messageRoutes.set('system-manager', this.handleSystemMessage.bind(this));
+  }
+
+  /**
+   * NEXUS-001: Handle incoming agent messages
+   */
+  async handleAgentMessage(payload, message) {
+    console.log(`[Messaging] Received ${message.type} from ${message.sender}`);
+    
+    // Log message receipt
+    this.logMessage('received', message);
+    
+    // Route based on message type and target
+    const target = payload.target || message.metadata?.target || 'system-manager';
+    const route = this.messageRoutes.get(target);
+    
+    if (route) {
+      try {
+        const result = await route(payload, message);
+        
+        // Send acknowledgment if requested
+        if (payload.ack !== false) {
+          await this.sendAcknowledgment(message, result);
+        }
+      } catch (error) {
+        console.error(`[Messaging] Route error for ${target}:`, error.message);
+        await this.sendErrorResponse(message, error);
+      }
+    } else {
+      console.warn(`[Messaging] No route for target: ${target}`);
+    }
+  }
+
+  /**
+   * NEXUS-001: Send acknowledgment response
+   */
+  async sendAcknowledgment(originalMessage, result) {
+    await this.bus.respond(originalMessage, {
+      status: 'acknowledged',
+      result: result !== undefined ? result : null,
+      processedAt: new Date().toISOString()
+    });
+  }
+
+  /**
+   * NEXUS-001: Send error response
+   */
+  async sendErrorResponse(originalMessage, error) {
+    await this.bus.respond(originalMessage, {
+      status: 'error',
+      error: {
+        message: error.message,
+        type: error.name
+      },
+      processedAt: new Date().toISOString()
+    });
+  }
+
+  /**
+   * NEXUS-001: Route to orchestrator
+   */
+  async routeToOrchestrator(payload, message) {
+    switch (payload.action) {
+      case 'spawn-agent':
+        return await orchestrator.spawnDynamicAgent(payload.params);
+      case 'evolve-agent':
+        return await orchestrator.evolveAgent(payload.agentId, payload.dna);
+      case 'get-dna':
+        return orchestrator.agentDNA[payload.agentId];
+      case 'update-dna':
+        await orchestrator.updateAgentDNA(payload.agentId, payload.metrics);
+        return { updated: true };
+      default:
+        throw new Error(`Unknown orchestrator action: ${payload.action}`);
+    }
+  }
+
+  /**
+   * NEXUS-001: Route to failure analysis
+   */
+  async routeToFailureAnalysis(payload, message) {
+    switch (payload.action) {
+      case 'analyze':
+        return await failureAnalysis.analyzeFailure(payload.failure);
+      case 'get-forecast':
+        return failureAnalysis.getForecast();
+      default:
+        throw new Error(`Unknown failure-analysis action: ${payload.action}`);
+    }
+  }
+
+  /**
+   * NEXUS-001: Route to meta-learning
+   */
+  async routeToMetaLearning(payload, message) {
+    switch (payload.action) {
+      case 'record-strategy':
+        metaLearning.recordStrategy(payload.strategy);
+        return { recorded: true };
+      case 'get-collective-intelligence':
+        return metaLearning.getCollectiveIntelligence();
+      case 'evolve-system':
+        return await metaLearning.evolveSystem();
+      default:
+        throw new Error(`Unknown meta-learning action: ${payload.action}`);
+    }
+  }
+
+  /**
+   * NEXUS-001: Route to quality gate
+   */
+  async routeToQualityGate(payload, message) {
+    switch (payload.action) {
+      case 'review':
+        return await qualityGate.review(payload.output, payload.agent);
+      case 'get-criteria':
+        return qualityGate.reviewCriteria;
+      default:
+        throw new Error(`Unknown quality-gate action: ${payload.action}`);
+    }
+  }
+
+  /**
+   * NEXUS-001: Handle system-level messages
+   */
+  async handleSystemMessage(payload, message) {
+    switch (payload.action) {
+      case 'get-status':
+        return this.getStatus();
+      case 'health-check':
+        return await this.runHealthCheck();
+      case 'register-agent':
+        this.registerAgent(payload.agentId, payload.capabilities);
+        return { registered: true };
+      case 'broadcast':
+        return await this.broadcastToAgents(payload.message, payload.filter);
+      case 'send-direct':
+        return await this.sendDirectMessage(payload.recipient, payload.content, payload.options);
+      default:
+        return { status: 'unknown-action', action: payload.action };
+    }
+  }
+
+  /**
+   * NEXUS-001: Register an agent with the system
+   */
+  registerAgent(agentId, capabilities = []) {
+    this.agentRegistry.set(agentId, {
+      id: agentId,
+      capabilities,
+      registeredAt: new Date().toISOString(),
+      lastSeen: new Date().toISOString(),
+      status: 'active'
+    });
+    
+    console.log(`[Messaging] Registered agent: ${agentId}`);
+    
+    // Register route for this agent if needed
+    this.bus.registerRoute(agentId, { type: 'local', priority: 1 });
+  }
+
+  /**
+   * NEXUS-001: Unregister an agent
+   */
+  unregisterAgent(agentId) {
+    const agent = this.agentRegistry.get(agentId);
+    if (agent) {
+      agent.status = 'inactive';
+      agent.unregisteredAt = new Date().toISOString();
+      this.agentRegistry.set(agentId, agent);
+      console.log(`[Messaging] Unregistered agent: ${agentId}`);
+    }
+  }
+
+  /**
+   * NEXUS-001: Send direct message to specific agent
+   */
+  async sendDirectMessage(recipient, content, options = {}) {
+    const result = await this.bus.send(recipient, content, options);
+    this.logMessage('sent', { id: result.messageId, recipient, content });
+    return result;
+  }
+
+  /**
+   * NEXUS-001: Broadcast message to all or filtered agents
+   */
+  async broadcastToAgents(message, filter = null) {
+    let targets = Array.from(this.agentRegistry.keys());
+    
+    if (filter) {
+      if (filter.capabilities) {
+        targets = targets.filter(id => {
+          const agent = this.agentRegistry.get(id);
+          return filter.capabilities.every(cap => agent.capabilities.includes(cap));
+        });
+      }
+      if (filter.status) {
+        targets = targets.filter(id => {
+          const agent = this.agentRegistry.get(id);
+          return agent.status === filter.status;
+        });
+      }
+    }
+    
+    const results = await this.bus.broadcast(targets, message, { type: MESSAGE_TYPE.BROADCAST });
+    this.logMessage('broadcast', { recipients: targets, message });
+    return { sent: results.length, recipients: targets };
+  }
+
+  /**
+   * NEXUS-001: Get conversation history between agents
+   */
+  getConversation(agent1, agent2) {
+    return this.bus.getConversation(agent1, agent2);
+  }
+
+  /**
+   * NEXUS-001: Query message history
+   */
+  queryMessageHistory(filters = {}) {
+    return this.bus.queryHistory(filters);
+  }
+
+  /**
+   * NEXUS-001: Log message activity
+   */
+  logMessage(direction, message) {
+    const logEntry = {
+      direction,
+      timestamp: new Date().toISOString(),
+      messageId: message.id || message.messageId,
+      sender: message.sender,
+      recipient: message.recipient,
+      type: message.type
+    };
+    
+    const logFile = path.join(NEXUS_DIR, 'logs', 'message-routing.log');
+    fs.appendFileSync(logFile, JSON.stringify(logEntry) + '\n');
   }
 
   /**
@@ -48,6 +312,7 @@ class NeuralNexusSystem {
    */
   async initialize() {
     console.log('🧠 Neural Nexus v2.0 Initializing...');
+    console.log('📨 Agent-to-Agent Messaging: Enabled (NEXUS-001)');
     
     // Ensure directory structure
     this.ensureDirectories();
@@ -68,8 +333,9 @@ class NeuralNexusSystem {
     
     this.status = 'running';
     console.log('✅ Neural Nexus v2.0 Running');
+    console.log('✅ Agent Messaging System Active');
     
-    await this.notify('🧠 Neural Nexus v2.0 is now online\n\nSelf-healing: Active\nMeta-learning: Active\nFailure analysis: Active');
+    await this.notify('🧠 Neural Nexus v2.0 is now online\n\nSelf-healing: Active\nMeta-learning: Active\nFailure analysis: Active\nAgent Messaging: Active (NEXUS-001)');
     
     return { status: 'running', health: this.healthStatus };
   }
@@ -80,7 +346,8 @@ class NeuralNexusSystem {
   ensureDirectories() {
     const dirs = [
       'dna', 'logs', 'analysis', 'meta-learning',
-      'state', 'agents', 'agents-output'
+      'state', 'agents', 'agents-output',
+      'state/message-history', 'state/message-queue'
     ];
     
     for (const dir of dirs) {
@@ -231,7 +498,8 @@ class NeuralNexusSystem {
       memory: await this.checkMemory(),
       gateway: await this.checkGateway(),
       agents: await this.checkAgents(),
-      dna: await this.checkDNA()
+      dna: await this.checkDNA(),
+      messaging: await this.checkMessaging()  // NEXUS-001
     };
     
     const failed = Object.entries(checks).filter(([_, c]) => !c.healthy);
@@ -295,6 +563,23 @@ class NeuralNexusSystem {
       return { healthy: count > 0, agentCount: count };
     } catch {
       return { healthy: false, error: 'DNA registry corrupt' };
+    }
+  }
+
+  /**
+   * NEXUS-001: Check messaging system health
+   */
+  async checkMessaging() {
+    try {
+      const stats = this.bus.getStats();
+      return {
+        healthy: true,
+        stats,
+        registeredAgents: this.agentRegistry.size,
+        messageRoutes: this.messageRoutes.size
+      };
+    } catch (e) {
+      return { healthy: false, error: e.message };
     }
   }
 
@@ -381,6 +666,16 @@ class NeuralNexusSystem {
       startedAt: this.startedAt,
       uptime: Date.now() - new Date(this.startedAt).getTime(),
       health: this.healthStatus,
+      messaging: {  // NEXUS-001
+        enabled: true,
+        registeredAgents: Array.from(this.agentRegistry.entries()).map(([id, info]) => ({
+          id,
+          capabilities: info.capabilities,
+          status: info.status
+        })),
+        routes: Array.from(this.messageRoutes.keys()),
+        stats: this.bus.getStats()
+      },
       collectiveIntelligence: metaLearning.getCollectiveIntelligence(),
       failureForecast: failureAnalysis.getForecast(),
       agentDNA: orchestrator.agentDNA
@@ -448,6 +743,27 @@ if (require.main === module) {
         console.log(JSON.stringify(result, null, 2));
       });
       break;
+    case 'messaging':  // NEXUS-001: New CLI command
+      const msgCommand = process.argv[3];
+      const recipient = process.argv[4];
+      const content = process.argv[5];
+      
+      if (msgCommand === 'send' && recipient && content) {
+        nexus.sendDirectMessage(recipient, { text: content })
+          .then(result => console.log('Sent:', result))
+          .catch(err => console.error('Error:', err.message));
+      } else if (msgCommand === 'history') {
+        const history = nexus.queryMessageHistory({ limit: 20 });
+        console.log(JSON.stringify(history, null, 2));
+      } else if (msgCommand === 'stats') {
+        console.log(JSON.stringify(nexus.bus.getStats(), null, 2));
+      } else {
+        console.log('Messaging commands:');
+        console.log('  messaging send <recipient> <content> - Send direct message');
+        console.log('  messaging history - Show recent messages');
+        console.log('  messaging stats - Show messaging statistics');
+      }
+      break;
     case 'shutdown':
       nexus.shutdown();
       break;
@@ -461,6 +777,7 @@ if (require.main === module) {
       console.log('  status         - Show full system status');
       console.log('  execute <agent> - Execute an agent');
       console.log('  health         - Run health check');
+      console.log('  messaging      - Agent messaging commands (NEXUS-001)');
       console.log('  shutdown       - Graceful shutdown');
   }
 }

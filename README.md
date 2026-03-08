@@ -12,6 +12,14 @@ Neural Nexus doesn't just run agents—it **understands** them, **heals** them, 
 ┌─────────────────────────────────────────────────────────────┐
 │                    SYSTEM MANAGER v2                         │
 │              (Unified Control & Orchestration)               │
+│                                                              │
+│           ┌──────────────────────────────────┐               │
+│           │   AGENT-TO-AGENT MESSAGING       │  ← NEXUS-001 │
+│           │   • Direct Messages              │               │
+│           │   • Request/Response             │               │
+│           │   • Broadcast                    │               │
+│           │   • Message History              │               │
+│           └──────────────────────────────────┘               │
 └─────────────────────────────────────────────────────────────┘
                               │
         ┌─────────────────────┼─────────────────────┐
@@ -37,7 +45,28 @@ Neural Nexus doesn't just run agents—it **understands** them, **heals** them, 
 
 ## Key Features
 
-### 1. Agent DNA
+### 1. Agent-to-Agent Messaging (NEXUS-001) ✨ NEW
+Agents can communicate directly with each other:
+- **Direct messages** — One-to-one agent communication
+- **Request/Response** — Synchronous request handling with timeouts
+- **Broadcast** — Send to multiple or all agents
+- **Message history** — Full conversation tracking and querying
+- **Delivery guarantees** — Acknowledgments and retry logic
+
+```javascript
+// Send direct message
+await bus.send('agent-b', { task: 'analyze' });
+
+// Request-response pattern
+const response = await bus.request('agent-b', { query: 'data' }, { 
+  responseTimeout: 5000 
+});
+
+// Broadcast to all agents
+await bus.broadcast('*', { alert: 'system-update' });
+```
+
+### 2. Agent DNA
 Every agent has a genetic profile:
 ```json
 {
@@ -49,7 +78,7 @@ Every agent has a genetic profile:
 }
 ```
 
-### 2. Self-Healing
+### 3. Self-Healing
 When agents fail:
 - Automatic failure classification (TIMEOUT, NETWORK, RESOURCE_EXHAUSTION, etc.)
 - Root cause analysis with confidence scoring
@@ -57,13 +86,13 @@ When agents fail:
 - Dynamic healing specialist spawning
 - Automatic repair and testing
 
-### 3. Meta-Learning
+### 4. Meta-Learning
 - Successful strategies transfer between agents
 - Emergent pattern detection ("These 3 agents always fail together")
 - Collective intelligence building over time
 - Automatic knowledge transfer to struggling agents
 
-### 4. Evolution
+### 5. Evolution
 Agents evolve automatically:
 - **High performers** → Gain new capabilities, increased complexity
 - **Low performers** → Simplified focus, targeted improvements
@@ -81,6 +110,11 @@ node system-manager-v2.js status
 # Run health check
 node system-manager-v2.js health
 
+# Agent Messaging (NEXUS-001)
+node system-manager-v2.js messaging send <recipient> "Hello!"
+node system-manager-v2.js messaging history
+node system-manager-v2.js messaging stats
+
 # Manual healing for an agent
 node agents/healing-specialist.js <agent-name>
 ```
@@ -90,6 +124,9 @@ node agents/healing-specialist.js <agent-name>
 | Component | Purpose |
 |-----------|---------|
 | `system-manager-v2.js` | Main entry point, coordinates all systems |
+| `enhanced-event-bus.js` | NEXUS-001: Agent messaging with delivery guarantees |
+| `messaging-protocol.js` | NEXUS-001: Standardized message format (AMP) |
+| `message-history.js` | NEXUS-001: Message tracking and conversation history |
 | `self-healing-orchestrator.js` | Failure detection, healing dispatch, evolution |
 | `failure-analysis-engine.js` | Deep diagnosis, pattern recognition, forecasting |
 | `meta-learning-engine.js` | Knowledge transfer, emergent patterns, system evolution |
@@ -134,7 +171,10 @@ neural-nexus/
 ├── meta-learning/      # Collective knowledge
 ├── mission-control/    # Dashboard (optional)
 ├── state/              # System state
-└── *.js                # Core engines
+│   ├── message-history/   # NEXUS-001: Message history
+│   └── message-queue/     # NEXUS-001: Offline message queues
+├── *.js                # Core engines
+└── test-messaging.js   # NEXUS-001: Messaging tests
 ```
 
 ## Failure Recovery
@@ -154,6 +194,47 @@ All components communicate via events:
 - `AGENT_COMPLETED` → Quality check → DNA update
 - `QUALITY_REJECTED` → Improvement cycle
 - `HEALING_COMPLETED` → Learning recorded
+- `AGENT_MESSAGE` → NEXUS-001: Inter-agent communication
+- `AGENT_RESPONSE` → NEXUS-001: Response to agent request
+
+### Messaging Protocol (AMP)
+
+The Agent Messaging Protocol defines standardized communication:
+
+```javascript
+{
+  // Core identifiers
+  id: "msg_1234567890_abc123",
+  correlationId: "msg_previous_message_id",  // For responses
+  
+  // Routing
+  type: "direct" | "request" | "response" | "broadcast",
+  sender: "agent-name",
+  recipient: "target-agent" | "*",
+  
+  // Content
+  payload: { /* any JSON-serializable data */ },
+  
+  // Metadata
+  timestamp: "2024-03-08T12:00:00Z",
+  priority: 0-4,  // CRITICAL=0, HIGH=1, NORMAL=2, LOW=3, BATCH=4
+  ttl: 300000,    // Time-to-live in ms
+  
+  // Tracking
+  metadata: {
+    version: "1.0",
+    tags: ["urgent", "task-delegation"],
+    context: { requestId: "xyz" }
+  },
+  
+  // Status
+  status: {
+    sent: true,
+    delivered: true,
+    read: false
+  }
+}
+```
 
 ## Monitoring
 

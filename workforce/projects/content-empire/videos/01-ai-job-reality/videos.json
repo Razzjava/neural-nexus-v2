@@ -1,0 +1,18 @@
+{
+  "scriptId": "01-ai-job-reality",
+  "hook": "26% of all jobs are about to be transformed by AI. But here's what the headlines won't tell you...",
+  "theme": "AI & Career Transformation",
+  "createdAt": "2026-03-08T01:46:45.449Z",
+  "videos": {
+    "youtubeLong": {
+      "format": "youtubeLong",
+      "width": 1920,
+      "height": 1080,
+      "duration": 30,
+      "fps": 30,
+      "compositionPath": "/root/.openclaw/workspace/neural-nexus/remotion/video-youtubeLong-1772934405449.tsx",
+      "outputPath": "/root/.openclaw/workspace/neural-nexus/workforce/projects/content-empire/videos/01-ai-job-reality/youtubeLong.mp4",
+      "status": "ready_to_render"
+    }
+  }
+}

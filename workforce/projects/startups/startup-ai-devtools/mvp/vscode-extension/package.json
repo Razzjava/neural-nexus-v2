@@ -1,0 +1,145 @@
+{
+  "name": "sentinelcode",
+  "displayName": "SentinelCode - AI Code Security",
+  "description": "Real-time security scanning for AI-generated code",
+  "version": "0.1.0",
+  "publisher": "sentinelcode",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Security",
+    "Linters"
+  ],
+  "keywords": [
+    "ai",
+    "security",
+    "copilot",
+    "cursor",
+    "vulnerabilities",
+    "scanning"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sentinelcode.scanFile",
+        "title": "Scan File for Security Issues",
+        "category": "SentinelCode"
+      },
+      {
+        "command": "sentinelcode.scanWorkspace",
+        "title": "Scan Workspace",
+        "category": "SentinelCode"
+      },
+      {
+        "command": "sentinelcode.openDashboard",
+        "title": "Open Dashboard",
+        "category": "SentinelCode"
+      },
+      {
+        "command": "sentinelcode.enableAutoScan",
+        "title": "Enable Auto-Scan",
+        "category": "SentinelCode"
+      },
+      {
+        "command": "sentinelcode.disableAutoScan",
+        "title": "Disable Auto-Scan",
+        "category": "SentinelCode"
+      }
+    ],
+    "configuration": {
+      "title": "SentinelCode",
+      "properties": {
+        "sentinelcode.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable SentinelCode security scanning"
+        },
+        "sentinelcode.apiUrl": {
+          "type": "string",
+          "default": "https://api.sentinelcode.io",
+          "description": "SentinelCode API endpoint"
+        },
+        "sentinelcode.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for authentication"
+        },
+        "sentinelcode.autoScan": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically scan on file save"
+        },
+        "sentinelcode.scanAIGeneratedOnly": {
+          "type": "boolean",
+          "default": false,
+          "description": "Only scan AI-generated code (auto-detected)"
+        },
+        "sentinelcode.severityFilter": {
+          "type": "array",
+          "default": ["critical", "high", "medium"],
+          "description": "Severity levels to report"
+        },
+        "sentinelcode.showInlineDecorations": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inline security decorations"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "sentinelcode.scanFile",
+          "group": "9_cutcopypaste@5"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "sentinelcode.securityPanel",
+          "name": "SentinelCode Security",
+          "when": "sentinelcode.enabled"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sentinelcode",
+          "title": "SentinelCode",
+          "icon": "$(shield)"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.x",
+    "@vscode/vsce": "^2.x"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

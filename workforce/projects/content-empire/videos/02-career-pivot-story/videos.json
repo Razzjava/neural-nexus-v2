@@ -1,0 +1,18 @@
+{
+  "scriptId": "02-career-pivot-story",
+  "hook": "5 years as a certified senior Pega developer. $100K+ salary. I walked away from it all to become a YouTuber. Here's why—and what happened next.",
+  "theme": "Career Pivot Success Story",
+  "createdAt": "2026-03-08T01:46:45.450Z",
+  "videos": {
+    "youtubeLong": {
+      "format": "youtubeLong",
+      "width": 1920,
+      "height": 1080,
+      "duration": 45,
+      "fps": 30,
+      "compositionPath": "/root/.openclaw/workspace/neural-nexus/remotion/video-youtubeLong-1772934405450.tsx",
+      "outputPath": "/root/.openclaw/workspace/neural-nexus/workforce/projects/content-empire/videos/02-career-pivot-story/youtubeLong.mp4",
+      "status": "ready_to_render"
+    }
+  }
+}
