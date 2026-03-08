@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-03-08T15:24:29.638Z",
+  "systemHealth": {
+    "memoryPercent": 84,
+    "diskPercent": 87,
+    "loadAverage": 0.12,
+    "timestamp": 1772983469636
+  },
+  "agentCount": 13,
+  "agentsHealthy": 10,
+  "issues": [
+    {
+      "type": "agent_stale",
+      "severity": "medium",
+      "description": "Agent undefined hasn't updated in 29549724 minutes"
+    },
+    {
+      "type": "agent_stale",
+      "severity": "medium",
+      "description": "Agent undefined hasn't updated in 29549724 minutes"
+    },
+    {
+      "type": "agent_stale",
+      "severity": "medium",
+      "description": "Agent undefined hasn't updated in 29549724 minutes"
+    }
+  ],
+  "metrics": {
+    "tasksCompleted": 0,
+    "errors": 0,
+    "lastTask": null,
+    "healthChecks": 0,
+    "issuesDetected": 3,
+    "recoveries": 3
+  }
+}

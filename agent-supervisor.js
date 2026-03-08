@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Neural Nexus Agent Supervisor
- * Real process manager for workforce agents
+ * Neural Nexus Agent Supervisor - Complete Edition
+ * Real process manager for ALL workforce and core agents
  */
 
 const fs = require('fs');
@@ -10,7 +10,8 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 const NEXUS_DIR = '/root/.openclaw/workspace/neural-nexus';
-const AGENTS_DIR = path.join(NEXUS_DIR, 'workforce/agents');
+const AGENTS_DIR = path.join(NEXUS_DIR, 'agents');
+const WORKFORCE_DIR = path.join(NEXUS_DIR, 'workforce', 'agents');
 const STATE_DIR = path.join(NEXUS_DIR, 'state');
 const LOG_DIR = path.join(NEXUS_DIR, 'logs');
 
@@ -19,45 +20,110 @@ const LOG_DIR = path.join(NEXUS_DIR, 'logs');
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
 
-// Agent Registry - Real operational agents
+// Complete Agent Registry - ALL agents
 const AGENTS = {
+  // Workforce Agents
   'scout-worker': {
-    script: 'scout-worker.js',
+    script: path.join(WORKFORCE_DIR, 'scout-worker.js'),
     enabled: true,
     restartPolicy: 'always',
     maxRestarts: 5,
-    env: { TASK: 'youtube-trending' }
+    env: {}
   },
   'content-empire': {
-    script: 'content-empire.js',
+    script: path.join(WORKFORCE_DIR, 'content-empire.js'),
     enabled: true,
     restartPolicy: 'always',
     maxRestarts: 3,
     env: {}
   },
   'startup-generator': {
-    script: 'startup-generator.js',
+    script: path.join(WORKFORCE_DIR, 'startup-generator.js'),
     enabled: true,
     restartPolicy: 'on-failure',
     maxRestarts: 2,
     env: {}
   },
   'nexus-dev-team': {
-    script: 'nexus-dev-team.js',
+    script: path.join(WORKFORCE_DIR, 'nexus-dev-team.js'),
     enabled: true,
     restartPolicy: 'always',
     maxRestarts: 3,
     env: {}
   },
   'remotion-video': {
-    script: 'remotion-video-agent.js',
+    script: path.join(WORKFORCE_DIR, 'remotion-video-agent.js'),
     enabled: true,
     restartPolicy: 'on-failure',
     maxRestarts: 5,
     env: {}
   },
   'workforce-reporter': {
-    script: 'workforce-reporter.js',
+    script: path.join(WORKFORCE_DIR, 'workforce-reporter.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  // Core Development Agents
+  'architect': {
+    script: path.join(AGENTS_DIR, 'architect-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'backend-dev': {
+    script: path.join(AGENTS_DIR, 'backend-dev-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'frontend-dev': {
+    script: path.join(AGENTS_DIR, 'frontend-dev-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'devops': {
+    script: path.join(AGENTS_DIR, 'devops-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'qa': {
+    script: path.join(AGENTS_DIR, 'qa-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'ba': {
+    script: path.join(AGENTS_DIR, 'ba-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'pm': {
+    script: path.join(AGENTS_DIR, 'pm-agent-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 3,
+    env: {}
+  },
+  'healing-specialist': {
+    script: path.join(AGENTS_DIR, 'healing-specialist-daemon.js'),
+    enabled: true,
+    restartPolicy: 'always',
+    maxRestarts: 5,
+    env: {}
+  },
+  'manifestor': {
+    script: path.join(AGENTS_DIR, 'manifestor-daemon.js'),
     enabled: true,
     restartPolicy: 'always',
     maxRestarts: 3,
@@ -72,7 +138,7 @@ class AgentSupervisor {
   }
 
   loadStates() {
-    const stateFile = path.join(STATE_DIR, 'agent-states.json');
+    const stateFile = path.join(STATE_DIR, 'supervisor-state.json');
     if (fs.existsSync(stateFile)) {
       return JSON.parse(fs.readFileSync(stateFile, 'utf8'));
     }
@@ -80,54 +146,52 @@ class AgentSupervisor {
   }
 
   saveStates() {
-    const stateFile = path.join(STATE_DIR, 'agent-states.json');
+    const stateFile = path.join(STATE_DIR, 'supervisor-state.json');
     fs.writeFileSync(stateFile, JSON.stringify(this.agentStates, null, 2));
   }
 
-  /**
-   * Calculate real agent metrics from process data
-   */
   calculateMetrics(agentId, proc) {
     try {
-      // Read /proc/[pid]/stat for CPU/memory
-      const statPath = `/proc/${proc.pid}/stat`;
-      const statmPath = `/proc/${proc.pid}/statm`;
-      
       let cpuTime = 0;
       let memoryMB = 0;
       
-      if (fs.existsSync(statPath)) {
-        const stat = fs.readFileSync(statPath, 'utf8').split(' ');
-        // utime + stime (user + system time)
-        cpuTime = (parseInt(stat[13]) + parseInt(stat[14])) / 100; // in seconds
-      }
-      
-      if (fs.existsSync(statmPath)) {
-        const statm = fs.readFileSync(statmPath, 'utf8').split(' ');
-        // resident set size in pages
-        const pageSize = 4096; // bytes
-        memoryMB = (parseInt(statm[1]) * pageSize) / (1024 * 1024);
+      if (proc.pid) {
+        const statPath = `/proc/${proc.pid}/stat`;
+        const statmPath = `/proc/${proc.pid}/statm`;
+        
+        if (fs.existsSync(statPath)) {
+          const stat = fs.readFileSync(statPath, 'utf8').split(' ');
+          cpuTime = (parseInt(stat[13]) + parseInt(stat[14])) / 100;
+        }
+        
+        if (fs.existsSync(statmPath)) {
+          const statm = fs.readFileSync(statmPath, 'utf8').split(' ');
+          const pageSize = 4096;
+          memoryMB = (parseInt(statm[1]) * pageSize) / (1024 * 1024);
+        }
       }
 
-      // Calculate "DNA Integrity" based on process health
       const uptime = proc.startTime ? (Date.now() - proc.startTime) / 1000 : 0;
       const restartCount = this.agentStates[agentId]?.restartCount || 0;
       
-      // DNA Integrity: 100% minus penalties for restarts and errors
       let dnaIntegrity = 100;
-      dnaIntegrity -= restartCount * 5; // -5% per restart
+      dnaIntegrity -= restartCount * 5;
       if (proc.lastError) dnaIntegrity -= 15;
-      if (uptime < 60) dnaIntegrity -= 10; // Just started
+      if (uptime < 60) dnaIntegrity -= 10;
       dnaIntegrity = Math.max(0, Math.min(100, dnaIntegrity));
 
-      // Cognitive Load: based on CPU usage
       const cognitiveLoad = Math.min(100, (cpuTime / Math.max(uptime, 1)) * 10);
+      
+      const lastUpdate = this.agentStates[agentId]?.lastUpdate || 0;
+      const timeSinceUpdate = Date.now() - lastUpdate;
+      const neuralSync = Math.max(0, 100 - (timeSinceUpdate / 60000));
 
-      // Neural Sync: based on state consistency
-      const stateAge = this.agentStates[agentId]?.lastUpdate 
-        ? (Date.now() - this.agentStates[agentId].lastUpdate) / 1000 
-        : 0;
-      const neuralSync = Math.max(0, 100 - (stateAge / 60)); // Degrades after 60s without update
+      let statusCategory;
+      if (dnaIntegrity >= 95) statusCategory = 'OPTIMAL';
+      else if (dnaIntegrity >= 80) statusCategory = 'STABLE';
+      else if (dnaIntegrity >= 60) statusCategory = 'WARNING';
+      else if (dnaIntegrity >= 40) statusCategory = 'DEGRADED';
+      else statusCategory = 'CRITICAL';
 
       return {
         pid: proc.pid,
@@ -138,20 +202,13 @@ class AgentSupervisor {
         cognitiveLoad: Math.floor(cognitiveLoad),
         neuralSync: Math.floor(neuralSync),
         restartCount,
-        status: dnaIntegrity > 80 ? 'OPTIMAL' : dnaIntegrity > 60 ? 'STABLE' : dnaIntegrity > 40 ? 'WARNING' : 'CRITICAL'
+        statusCategory
       };
     } catch (e) {
-      return {
-        pid: proc.pid,
-        error: e.message,
-        status: 'UNKNOWN'
-      };
+      return { pid: proc.pid, error: e.message, statusCategory: 'UNKNOWN' };
     }
   }
 
-  /**
-   * Start an agent process
-   */
   startAgent(agentId) {
     const config = AGENTS[agentId];
     if (!config) {
@@ -159,9 +216,8 @@ class AgentSupervisor {
       return false;
     }
 
-    const scriptPath = path.join(AGENTS_DIR, config.script);
-    if (!fs.existsSync(scriptPath)) {
-      console.error(`[Supervisor] Script not found: ${scriptPath}`);
+    if (!fs.existsSync(config.script)) {
+      console.error(`[Supervisor] Script not found: ${config.script}`);
       return false;
     }
 
@@ -169,7 +225,7 @@ class AgentSupervisor {
 
     const logFile = fs.openSync(path.join(LOG_DIR, `${agentId}.log`), 'a');
     
-    const proc = spawn('node', [scriptPath, 'daemon'], {
+    const proc = spawn('node', [config.script, 'daemon'], {
       cwd: NEXUS_DIR,
       env: { ...process.env, ...config.env, AGENT_ID: agentId },
       detached: true,
@@ -194,14 +250,10 @@ class AgentSupervisor {
     };
 
     this.saveStates();
-
     console.log(`[Supervisor] ${agentId} started with PID ${proc.pid}`);
     return true;
   }
 
-  /**
-   * Stop an agent process
-   */
   stopAgent(agentId) {
     const proc = this.processes.get(agentId);
     if (!proc) {
@@ -222,9 +274,6 @@ class AgentSupervisor {
     return true;
   }
 
-  /**
-   * Get health status of all agents
-   */
   getHealthStatus() {
     const status = {
       timestamp: new Date().toISOString(),
@@ -242,21 +291,17 @@ class AgentSupervisor {
           pid: null,
           dnaIntegrity: 0,
           cognitiveLoad: 0,
-          neuralSync: 0
+          neuralSync: 0,
+          statusCategory: 'OFFLINE'
         };
       } else {
-        status.agents[agentId] = {
-          status: 'DISABLED'
-        };
+        status.agents[agentId] = { status: 'DISABLED' };
       }
     }
 
     return status;
   }
 
-  /**
-   * Monitor and restart failed agents
-   */
   monitor() {
     console.log('[Supervisor] Running health check...');
     
@@ -264,7 +309,6 @@ class AgentSupervisor {
       const proc = this.processes.get(agentId);
       const state = this.agentStates[agentId];
 
-      // Check if process is still alive
       let isAlive = false;
       if (proc && proc.pid) {
         try {
@@ -281,13 +325,11 @@ class AgentSupervisor {
           console.log(`[Supervisor] ${agentId} not responding, restarting...`);
           this.startAgent(agentId);
         } else {
-          console.error(`[Supervisor] ${agentId} exceeded max restarts, disabling`);
-          config.enabled = false;
+          console.error(`[Supervisor] ${agentId} exceeded max restarts`);
         }
       }
     }
 
-    // Save health snapshot
     const health = this.getHealthStatus();
     fs.writeFileSync(
       path.join(STATE_DIR, 'health-snapshot.json'),
@@ -295,11 +337,8 @@ class AgentSupervisor {
     );
   }
 
-  /**
-   * Start all enabled agents
-   */
   startAll() {
-    console.log('[Supervisor] Starting all enabled agents...');
+    console.log('[Supervisor] Starting ALL enabled agents...');
     for (const [agentId, config] of Object.entries(AGENTS)) {
       if (config.enabled && !this.processes.has(agentId)) {
         this.startAgent(agentId);
@@ -307,20 +346,64 @@ class AgentSupervisor {
     }
   }
 
-  /**
-   * Stop all agents
-   */
   stopAll() {
-    console.log('[Supervisor] Stopping all agents...');
+    console.log('[Supervisor] Stopping ALL agents...');
     for (const agentId of this.processes.keys()) {
       this.stopAgent(agentId);
     }
+  }
+
+  list() {
+    const status = this.getHealthStatus();
+    console.log('\n=== NEURAL NEXUS AGENT FLEET ===\n');
+    
+    const categories = {
+      workforce: [],
+      core: [],
+      personal: []
+    };
+
+    for (const [agentId, metrics] of Object.entries(status.agents)) {
+      const cat = AGENTS[agentId]?.category || 'core';
+      categories[cat === 'workforce' ? 'workforce' : cat === 'personal' ? 'personal' : 'core'].push({
+        id: agentId,
+        ...metrics
+      });
+    }
+
+    console.log('WORKFORCE AGENTS:');
+    categories.workforce.forEach(a => {
+      const statusIcon = a.statusCategory === 'OPTIMAL' ? '✅' : 
+                        a.statusCategory === 'STABLE' ? '🟢' :
+                        a.statusCategory === 'WARNING' ? '🟡' :
+                        a.statusCategory === 'CRITICAL' ? '🔴' : '⚪';
+      console.log(`  ${statusIcon} ${a.id.padEnd(20)} PID:${(a.pid || 'N/A').toString().padEnd(8)} DNA:${a.dnaIntegrity || 0}%`);
+    });
+
+    console.log('\nCORE DEVELOPMENT AGENTS:');
+    categories.core.forEach(a => {
+      const statusIcon = a.statusCategory === 'OPTIMAL' ? '✅' : 
+                        a.statusCategory === 'STABLE' ? '🟢' :
+                        a.statusCategory === 'WARNING' ? '🟡' :
+                        a.statusCategory === 'CRITICAL' ? '🔴' : '⚪';
+      console.log(`  ${statusIcon} ${a.id.padEnd(20)} PID:${(a.pid || 'N/A').toString().padEnd(8)} DNA:${a.dnaIntegrity || 0}%`);
+    });
+
+    console.log('\nPERSONAL AGENTS:');
+    categories.personal.forEach(a => {
+      const statusIcon = a.statusCategory === 'OPTIMAL' ? '✅' : 
+                        a.statusCategory === 'STABLE' ? '🟢' :
+                        a.statusCategory === 'WARNING' ? '🟡' :
+                        a.statusCategory === 'CRITICAL' ? '🔴' : '⚪';
+      console.log(`  ${statusIcon} ${a.id.padEnd(20)} PID:${(a.pid || 'N/A').toString().padEnd(8)} DNA:${a.dnaIntegrity || 0}%`);
+    });
+
+    console.log('\n================================\n');
   }
 }
 
 // CLI
 const supervisor = new AgentSupervisor();
-
 const command = process.argv[2];
 
 switch (command) {
@@ -333,6 +416,9 @@ switch (command) {
   case 'status':
     console.log(JSON.stringify(supervisor.getHealthStatus(), null, 2));
     break;
+  case 'list':
+    supervisor.list();
+    break;
   case 'monitor':
     supervisor.monitor();
     break;
@@ -343,7 +429,7 @@ switch (command) {
     supervisor.stopAgent(process.argv[3]);
     break;
   default:
-    console.log('Usage: node agent-supervisor.js [start|stop|status|monitor|start-one <agent>|stop-one <agent>]');
+    console.log('Usage: node agent-supervisor.js [start|stop|status|list|monitor|start-one <agent>|stop-one <agent>]');
 }
 
 module.exports = AgentSupervisor;

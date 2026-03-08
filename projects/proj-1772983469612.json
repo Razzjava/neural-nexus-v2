@@ -1,0 +1,15 @@
+{
+  "id": "proj-1772983469612",
+  "name": "Neural Nexus Enhancement",
+  "status": "planning",
+  "createdAt": "2026-03-08T15:24:29.612Z",
+  "sprints": [],
+  "backlog": [],
+  "team": [
+    "architect",
+    "backend-dev",
+    "frontend-dev",
+    "qa",
+    "devops"
+  ]
+}

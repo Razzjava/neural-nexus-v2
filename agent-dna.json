@@ -1,102 +1,141 @@
 {
   "version": "2.0.0",
-  "lastUpdated": "2026-03-08T22:15:00+08:00",
+  "lastUpdated": "2026-03-08T22:30:00+08:00",
   "agents": {
     "scout-worker": {
       "id": "scout-worker",
       "name": "YouTube Scout Worker",
       "role": "Content Intelligence",
-      "dna": {
-        "integrity": 98,
-        "lineage": "v2.0-research",
-        "mutations": ["web-search", "trend-analysis", "viral-prediction"]
-      },
+      "category": "workforce",
+      "dna": { "integrity": 98, "lineage": "v2.0-research", "mutations": ["web-search", "trend-analysis"] },
       "capabilities": ["youtube-scout", "topic-research", "content-ideation"],
-      "resources": {
-        "memoryTargetMB": 256,
-        "cpuLimit": 50
-      },
-      "createdAt": "2026-03-08T09:00:00+08:00"
+      "resources": { "memoryTargetMB": 256, "cpuLimit": 50 }
     },
     "content-empire": {
       "id": "content-empire",
       "name": "Content Empire Agent",
       "role": "Script Generation",
-      "dna": {
-        "integrity": 96,
-        "lineage": "v2.0-creative",
-        "mutations": ["multi-platform", "hook-optimization", "seo-integration"]
-      },
+      "category": "workforce",
+      "dna": { "integrity": 96, "lineage": "v2.0-creative", "mutations": ["multi-platform", "hook-optimization"] },
       "capabilities": ["script-writing", "youtube-long", "youtube-short", "tiktok", "twitter", "linkedin"],
-      "resources": {
-        "memoryTargetMB": 512,
-        "cpuLimit": 75
-      },
-      "createdAt": "2026-03-08T09:00:00+08:00"
+      "resources": { "memoryTargetMB": 512, "cpuLimit": 75 }
     },
     "startup-generator": {
       "id": "startup-generator",
       "name": "Startup Generation Agent",
       "role": "Business Ideation",
-      "dna": {
-        "integrity": 94,
-        "lineage": "v2.0-venture",
-        "mutations": ["market-validation", "mvp-design", "financial-modeling"]
-      },
+      "category": "workforce",
+      "dna": { "integrity": 94, "lineage": "v2.0-venture", "mutations": ["market-validation", "mvp-design"] },
       "capabilities": ["startup-ideation", "market-research", "mvp-creation", "pitch-deck"],
-      "resources": {
-        "memoryTargetMB": 384,
-        "cpuLimit": 60
-      },
-      "createdAt": "2026-03-08T09:00:00+08:00"
+      "resources": { "memoryTargetMB": 384, "cpuLimit": 60 }
     },
     "nexus-dev-team": {
       "id": "nexus-dev-team",
       "name": "Nexus Dev Team",
       "role": "Platform Engineering",
-      "dna": {
-        "integrity": 92,
-        "lineage": "v2.0-engineer",
-        "mutations": ["agent-messaging", "system-architecture", "test-automation"]
-      },
+      "category": "workforce",
+      "dna": { "integrity": 92, "lineage": "v2.0-engineer", "mutations": ["agent-messaging", "system-architecture"] },
       "capabilities": ["feature-development", "bug-fixes", "architecture", "testing"],
-      "resources": {
-        "memoryTargetMB": 448,
-        "cpuLimit": 70
-      },
-      "createdAt": "2026-03-08T09:00:00+08:00"
+      "resources": { "memoryTargetMB": 448, "cpuLimit": 70 }
     },
     "remotion-video": {
       "id": "remotion-video",
       "name": "Remotion Video Agent",
       "role": "Video Production",
-      "dna": {
-        "integrity": 95,
-        "lineage": "v2.0-renderer",
-        "mutations": ["9x16-vertical", "16x9-horizontal", "viral-templates"]
-      },
+      "category": "workforce",
+      "dna": { "integrity": 95, "lineage": "v2.0-renderer", "mutations": ["9x16-vertical", "16x9-horizontal"] },
       "capabilities": ["video-rendering", "remotion-compositions", "tiktok-video", "youtube-video"],
-      "resources": {
-        "memoryTargetMB": 1024,
-        "cpuLimit": 90
-      },
-      "createdAt": "2026-03-08T09:00:00+08:00"
+      "resources": { "memoryTargetMB": 1024, "cpuLimit": 90 }
     },
     "workforce-reporter": {
       "id": "workforce-reporter",
       "name": "Workforce Reporter",
       "role": "System Intelligence",
-      "dna": {
-        "integrity": 99,
-        "lineage": "v2.0-analytics",
-        "mutations": ["dashboard-generation", "health-monitoring", "metrics-analysis"]
-      },
+      "category": "workforce",
+      "dna": { "integrity": 99, "lineage": "v2.0-analytics", "mutations": ["dashboard-generation", "health-monitoring"] },
       "capabilities": ["reporting", "dashboard-creation", "health-audits", "metrics-tracking"],
-      "resources": {
-        "memoryTargetMB": 192,
-        "cpuLimit": 30
-      },
-      "createdAt": "2026-03-08T09:00:00+08:00"
+      "resources": { "memoryTargetMB": 192, "cpuLimit": 30 }
+    },
+    "architect": {
+      "id": "architect",
+      "name": "System Architect",
+      "role": "Architecture Design",
+      "category": "core",
+      "dna": { "integrity": 97, "lineage": "v2.0-designer", "mutations": ["system-design", "scalability-planning"] },
+      "capabilities": ["architecture-design", "tech-stack-selection", "system-modeling"],
+      "resources": { "memoryTargetMB": 320, "cpuLimit": 45 }
+    },
+    "backend-dev": {
+      "id": "backend-dev",
+      "name": "Backend Developer",
+      "role": "API & Database Development",
+      "category": "core",
+      "dna": { "integrity": 95, "lineage": "v2.0-backend", "mutations": ["api-design", "database-optimization"] },
+      "capabilities": ["api-development", "database-design", "microservices", "authentication"],
+      "resources": { "memoryTargetMB": 384, "cpuLimit": 60 }
+    },
+    "frontend-dev": {
+      "id": "frontend-dev",
+      "name": "Frontend Developer",
+      "role": "UI/UX Development",
+      "category": "core",
+      "dna": { "integrity": 94, "lineage": "v2.0-frontend", "mutations": ["react-patterns", "accessibility"] },
+      "capabilities": ["react-development", "ui-components", "responsive-design", "state-management"],
+      "resources": { "memoryTargetMB": 320, "cpuLimit": 55 }
+    },
+    "devops": {
+      "id": "devops",
+      "name": "DevOps Engineer",
+      "role": "Infrastructure & CI/CD",
+      "category": "core",
+      "dna": { "integrity": 96, "lineage": "v2.0-infrastructure", "mutations": ["kubernetes", "terraform"] },
+      "capabilities": ["ci-cd-pipelines", "infrastructure-as-code", "monitoring", "security"],
+      "resources": { "memoryTargetMB": 448, "cpuLimit": 70 }
+    },
+    "qa": {
+      "id": "qa",
+      "name": "QA Engineer",
+      "role": "Testing & Quality Assurance",
+      "category": "core",
+      "dna": { "integrity": 93, "lineage": "v2.0-quality", "mutations": ["automation", "performance-testing"] },
+      "capabilities": ["test-automation", "regression-testing", "performance-testing", "security-testing"],
+      "resources": { "memoryTargetMB": 512, "cpuLimit": 65 }
+    },
+    "ba": {
+      "id": "ba",
+      "name": "Business Analyst",
+      "role": "Requirements & Analysis",
+      "category": "core",
+      "dna": { "integrity": 92, "lineage": "v2.0-analysis", "mutations": ["stakeholder-management", "process-modeling"] },
+      "capabilities": ["requirements-gathering", "process-analysis", "documentation", "stakeholder-communication"],
+      "resources": { "memoryTargetMB": 256, "cpuLimit": 40 }
+    },
+    "pm": {
+      "id": "pm",
+      "name": "Project Manager",
+      "role": "Project Coordination",
+      "category": "core",
+      "dna": { "integrity": 95, "lineage": "v2.0-coordination", "mutations": ["agile-mastery", "risk-management"] },
+      "capabilities": ["project-planning", "sprint-management", "risk-mitigation", "team-coordination"],
+      "resources": { "memoryTargetMB": 192, "cpuLimit": 35 }
+    },
+    "healing-specialist": {
+      "id": "healing-specialist",
+      "name": "Healing Specialist",
+      "role": "System Recovery",
+      "category": "core",
+      "dna": { "integrity": 98, "lineage": "v2.0-recovery", "mutations": ["self-healing", "diagnostics"] },
+      "capabilities": ["error-recovery", "system-diagnostics", "agent-repair", "health-monitoring"],
+      "resources": { "memoryTargetMB": 256, "cpuLimit": 45 }
+    },
+    "manifestor": {
+      "id": "manifestor",
+      "name": "Manifestation Agent",
+      "role": "Goal Achievement & Visualization",
+      "category": "personal",
+      "dna": { "integrity": 97, "lineage": "v2.0-manifestation", "mutations": ["goal-setting", "visualization"] },
+      "capabilities": ["goal-tracking", "vision-boards", "daily-affirmations", "progress-monitoring"],
+      "resources": { "memoryTargetMB": 192, "cpuLimit": 25 }
     }
   }
 }
