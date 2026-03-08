@@ -781,25 +781,21 @@ class WorkforceReporter {
 
   async sendNotification(reportPath, data) {
     try {
-      // Send text summary
-      const summary = `📊 Workforce Report Generated\n\n` +
+      const summary = `📊 Workforce Report Updated\n\n` +
         `Active Teams: ${data.summary.activeTeams}/3\n` +
         `Projects: ${data.summary.totalProjects}\n` +
-        `Recent Work: ${data.summary.recentWork}\n\n` +
-        `Full report attached below ⬇️`;
+        `Recent Work: ${data.summary.recentWork}\n` +
+        `Health: ${(data.summary.overallHealth * 100).toFixed(0)}%\n\n` +
+        `📄 Report: ${reportPath}\n\n` +
+        `(HTML file - open in browser to view interactive dashboard)`;
 
       execSync(`openclaw message send --target "-5297940191" --message "${summary}"`, {
         timeout: 10000
       });
 
-      // Send the HTML file
-      execSync(`openclaw message send --target "-5297940191" --file "${reportPath}" --caption "📊 Interactive Workforce Dashboard"`, {
-        timeout: 10000
-      });
-
-      console.log('[WorkforceReporter] File sent successfully');
+      console.log('[WorkforceReporter] Notification sent');
     } catch (e) {
-      console.error('[WorkforceReporter] Failed to send notification:', e.message);
+      console.error('[WorkforceReporter] Failed to notify:', e.message);
     }
   }
 }
